@@ -40,7 +40,7 @@ class MySpider(scrapy.Spider):
         for url in new_urls:
             if url not in self.old_url and url.split('/')[-2] > '2017-01-00':
                 self.old_url.append(url)
-                yield scrapy.Request(response.urljoin(url))
+                yield response.follow(url, self.parse)
             # print(len())
         # print(raw_article.css("a::text"))
         # print(article)
